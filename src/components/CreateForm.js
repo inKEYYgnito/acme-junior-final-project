@@ -4,7 +4,9 @@ class CreateForm extends Component {
     state = {}
     render() {
         return (
-            <h1>CREATE</h1>
+            <div id="app-create">
+                CREATE
+            </div>
         )
     }
 }

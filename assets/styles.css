@@ -1,7 +1,97 @@
+* {
+   box-sizing: border-box; 
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    height: 100%;
+}
+
+#root {
+    color: #404040;
+    display: grid;
+    height: 100%;
+    grid-template-columns: 25% auto;
+    grid-template-rows: 6% auto;
+    grid-template-areas:
+        "header header"
+        "side-content main-content";
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    grid-area: header;
+    border-bottom: solid 1px lightseagreen;
+}
+
 #app-name {
-    
+    font-size: 1.5em;
+}
+
+nav {
+    width: 50%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+a {
+    text-decoration: none;
+    color: #404040;
+}
+
+nav a {
+    transition: all 0.5s ease;
 }
 
 .active {
-    background-color: pink;
+    font-size: 1.3em;
+    color: lightseagreen;
+}
+
+#app-create {
+    grid-area: side-content;
+    display: flex;
+    justify-content: center;
+    padding-top: 5%;
+}
+
+#app-content {
+    grid-area: main-content;
+}
+
+#app-home {
+    padding-top: 15%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#app-students {
+    text-align: center;
+}
+
+#app-students > div {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.card {
+    border-radius: 0.1em;
+    border: solid 1px lightseagreen;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    min-width: 15em;
+    width: 30%;
+    height: 15em;
+    margin: 1em;
 }

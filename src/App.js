@@ -1,42 +1,39 @@
 import React, { Component } from 'react'
-import { HashRouter, Route, Switch, Redirect } from 'react-router-dom'
+import { HashRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { ROUTER_PATH } from './commons/constants'
+import * as actions from './store/actions'
 import Nav from './components/Nav'
 import Create from './components/CreateForm'
-import Home from './views/Home'
-import School from './views/School'
-import Schools from './views/Schools'
-import Students from './views/Students'
+import Content from './views/Content'
 
 class App extends Component {
-    state = {}
+    componentDidMount() {
+        this.props.loadSchools()
+        this.props.loadStudents()
+    }
     render() {
         return (
             <HashRouter>
                 <Nav />
-                <Switch>
-                    <Route exact path={ ROUTER_PATH.HOME } component={ Home } />
-                    <Route path={ `${ROUTER_PATH.STUDENTS}/create` } component={ Create } />
-                    <Route path={ ROUTER_PATH.STUDENTS } component={ Students } />
-                    <Route path={ `${ROUTER_PATH.SCHOOLS}/:id` } component={ School } />
-                    <Route path={ ROUTER_PATH.SCHOOLS } component={ Schools } />
-                    <Redirect to={ ROUTER_PATH.HOME } />
-                </Switch>
+                <Create />
+                <Content />
             </HashRouter>
         )
     }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = ({schools, students}) => {
     return {
-
+        schools,
+        students
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
+    const {schools, students} = actions
     return {
-
+        loadSchools: () => dispatch(schools.load()),
+        loadStudents: () => dispatch(students.load())
     }
 }
 
