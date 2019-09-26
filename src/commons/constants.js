@@ -12,3 +12,8 @@ export const ACTION_TYPE = {
     UPDATE_SCHOOLS: 'UPDATE_SCHOOLS',
     DELETE_SCHOOLS: 'DELETE_SCHOOLS'
 }
+
+export const CARD_TYPE = {
+    SCHOOL: 'SCHOOL',
+    STUDENT: 'STUDENT'
+}

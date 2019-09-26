@@ -1,6 +1,7 @@
 import React from 'react'
 import Card from '../components/Card'
 import { connect } from 'react-redux'
+import { CARD_TYPE } from '../commons/constants'
 
 const Students = ({ students }) => {
     return (
@@ -9,7 +10,7 @@ const Students = ({ students }) => {
             <div>
                 {
                     students.length ?
-                    students.map(student => (<Card key={ student.id } type="student" data={ student } />)) :
+                    students.map(student => (<Card key={ student.id } type={ CARD_TYPE.STUDENT } data={ student } />)) :
                     (<span>No student is currently enrolled...</span>)
                 }
             </div>

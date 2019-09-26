@@ -12,7 +12,7 @@ const Content = () => {
             <Switch>
                 <Route exact path={ ROUTER_PATH.HOME } component={ Home } />
                 <Route path={ ROUTER_PATH.STUDENTS } component={ Students } />
-                <Route path={ `${ROUTER_PATH.SCHOOLS}/:id` } component={ School } />
+                <Route path={ `${ROUTER_PATH.SCHOOLS}/:id` } render={ ({ match }) => ( <School schoolId={ match.params.id } /> ) } />
                 <Route path={ ROUTER_PATH.SCHOOLS } component={ Schools } />
                 <Redirect to={ ROUTER_PATH.HOME } />
             </Switch>

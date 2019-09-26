@@ -16,7 +16,7 @@ body {
     display: grid;
     height: 100%;
     grid-template-columns: 25% auto;
-    grid-template-rows: 6% auto;
+    grid-template-rows: 7% auto;
     grid-template-areas:
         "header header"
         "side-content main-content";
@@ -31,7 +31,8 @@ header {
 }
 
 #app-name {
-    font-size: 1.5em;
+    font-size: 1.8em;
+    border: none;
 }
 
 nav {
@@ -43,7 +44,12 @@ nav {
 
 a {
     text-decoration: none;
-    color: #404040;
+    border-bottom: solid 1px rgb(52, 123, 146);
+    color: rgb(52, 123, 146);
+}
+
+a:hover {
+    opacity: 0.5;
 }
 
 nav a {
@@ -53,13 +59,27 @@ nav a {
 .active {
     font-size: 1.3em;
     color: lightseagreen;
+    border: none;
 }
 
 #app-create {
     grid-area: side-content;
     display: flex;
-    justify-content: center;
-    padding-top: 5%;
+    flex-direction: column;
+    padding: 3% 10%;
+    height: 80vh;
+    font-size: 1.1em;
+}
+
+#app-create button {
+    width: 50%;
+    margin: 15% auto 0 auto;
+}
+
+input, select, #app-create button {
+    border-radius: 5px;
+    height: 25px;
+    font-size: 13px;
 }
 
 #app-content {
@@ -84,7 +104,7 @@ nav a {
 }
 
 .card {
-    border-radius: 0.1em;
+    border-radius: 5px;
     border: solid 1px lightseagreen;
     display: flex;
     flex-direction: column;
@@ -94,4 +114,5 @@ nav a {
     width: 30%;
     height: 15em;
     margin: 1em;
+    padding: 2% 0;
 }
