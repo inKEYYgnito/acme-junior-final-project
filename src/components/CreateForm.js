@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import * as actions from '../store/actions'
 
 class CreateForm extends Component {
     state = {
@@ -7,14 +8,23 @@ class CreateForm extends Component {
         lastName: '',
         email: '',
         gpa: '',
-        selectedSchool: ''
+        schoolId: '',
+        error: ''
     }
     handleChange = (prop, value) => {
         this.setState({[prop]: value})
     }
+    handleEnroll = () => {
+        const { firstName, lastName, email, gpa, schoolId } = this.state
+        try {
+            this.props.enrollStudent({ firstName, lastName, email, gpa, schoolId })
+        } catch (e) {
+            this.setState({ error: e })
+        }
+    }
     render() {
-        const { firstName, lastName, email, gpa, selectedSchool } = this.state
-        const { handleChange } = this
+        const { firstName, lastName, email, gpa, schoolId, error } = this.state
+        const { handleChange, handleEnroll } = this
         const { schools } = this.props
         return (
             <div id="app-create">
@@ -28,13 +38,14 @@ class CreateForm extends Component {
                 <p>GPA</p>
                 <input type="text" value={ gpa } onChange={ ({target}) => handleChange('gpa', target.value) } />
                 <p>School</p>
-                <select value={ selectedSchool } onChange={ ({target}) => handleChange('selectedSchool', target.value) } >
+                <select value={ schoolId } onChange={ ({target}) => handleChange('schoolId', target.value) } >
                     <option value=''>Not Enrolled</option>
                     {
                         schools.map((school) => (<option key={ school.id } value={ school.id }>{ school.name }</option>))
                     }
                 </select>
-                <button>Enroll</button>
+                <button onClick={ handleEnroll }>Enroll</button>
+                { error && (<span>{ error }</span>)}
             </div>
         )
     }
@@ -46,4 +57,11 @@ const mapStateToProps = ({ schools }) => {
     }
 }
 
-export default connect(mapStateToProps)(CreateForm)
+const mapDispatchToProps = (dispatch) => {
+    const { students } = actions
+    return {
+        enrollStudent: (student) => dispatch(students.create(student))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CreateForm)

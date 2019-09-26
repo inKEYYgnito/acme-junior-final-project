@@ -1,9 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
+import * as actions from '../store/actions'
 import { CARD_TYPE, ROUTER_PATH } from '../commons/constants'
 
-const Card = ({ cardName, school, gpa, studentCount, selectedId, selection, type}) => {
+const Card = ({ cardName, school, gpa, students, studentCount, selectedId, selection, type, updateSchoolId, enrollStudent, deleteStudent}) => {
     return (
         <div className="card">
             {
@@ -17,12 +18,12 @@ const Card = ({ cardName, school, gpa, studentCount, selectedId, selection, type
                 <span>GPA: { parseInt(gpa).toFixed(2) }</span> :
                 <span>Student Amount: { studentCount }</span>
             }
-            <select value={ selectedId }>
+            <select onChange={ type === CARD_TYPE.STUDENT ? ({target}) => updateSchoolId(target.value) : ({target}) => enrollStudent(students.find(s => s.id === target.value)) } value={ selectedId }>
                 {
                     selection.map((option) => (<option key={ option.id } value={ option.id }>{ option.name }</option>))
                 }
             </select>
-            { type === CARD_TYPE.STUDENT ? (<button>Destroy</button>) : '' }
+            { type === CARD_TYPE.STUDENT ? (<button onClick={ deleteStudent }>Destroy</button>) : '' }
         </div>
     )
 }
@@ -49,12 +50,21 @@ const mapStateToProps = ({ students, schools }, { data, type }) => {
         selection = [{ id: '', name: 'Enroll a Student'}, ...students.filter(s => s.schoolId !== school.id).map(s => ({ id: s.id, name: s.fullName }))]
     }
 
-    return { cardName, school, gpa, studentCount, selectedId, selection }
+    return { cardName, school, gpa, studentCount, selectedId, selection, students }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch, { data, history }) => {
     return {
-
+        updateSchoolId: (schoolId) => {
+            const student = { ...data, schoolId }
+            dispatch(actions.students.update(student))
+        },
+        enrollStudent: (student) => {
+            student.schoolId = data.id
+            dispatch(actions.students.update(student))
+            history.push(`${ROUTER_PATH.SCHOOLS}/${data.id}`)
+        },
+        deleteStudent: () => dispatch(actions.students.destroy(data.id))
     }
 }
 
