@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { HashRouter } from 'react-router-dom'
+import { HashRouter, Route } from 'react-router-dom'
 import { connect } from 'react-redux'
 import * as actions from './store/actions'
 import Nav from './components/Nav'
@@ -15,7 +15,7 @@ class App extends Component {
         return (
             <HashRouter>
                 <Nav />
-                <Create />
+                <Route path="/" render={ ({history}) => (<Create history={ history } />) } />
                 <Content />
             </HashRouter>
         )

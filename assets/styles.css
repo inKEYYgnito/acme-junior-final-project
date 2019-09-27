@@ -36,7 +36,7 @@ header {
 }
 
 nav {
-    width: 50%;
+    width: 60%;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -46,6 +46,7 @@ a {
     text-decoration: none;
     border-bottom: solid 1px rgb(52, 123, 146);
     color: rgb(52, 123, 146);
+    font-size: 1.1vw;
 }
 
 a:hover {
@@ -54,10 +55,13 @@ a:hover {
 
 nav a {
     transition: all 0.5s ease;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .active {
-    font-size: 1.3em;
+    font-size: 1.3vw;
     color: lightseagreen;
     border: none;
 }

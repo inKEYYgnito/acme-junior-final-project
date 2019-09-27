@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import * as actions from '../store/actions'
+import { ROUTER_PATH } from '../commons/constants'
 
 class CreateForm extends Component {
     state = {
@@ -18,6 +19,7 @@ class CreateForm extends Component {
         const { firstName, lastName, email, gpa, schoolId } = this.state
         try {
             await this.props.enrollStudent({ firstName, lastName, email, gpa, schoolId })
+            this.props.history.push(`${ROUTER_PATH.SCHOOLS}/${ schoolId }`)
         } catch (e) {
             this.setState({ error: e.response.data.message })
         }

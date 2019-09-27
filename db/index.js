@@ -13,7 +13,7 @@ const connect = async () => {
     await connection.sync({ force: true })
 
     const schoolsMeta = [
-        { name: 'Baruch Chollege', imageURL: 'https://www2.cuny.edu/wp-content/uploads/sites/4/assets//09_09_2004_bar_vertical_01233.jpg' },
+        { name: 'Baruch College', imageURL: 'https://www2.cuny.edu/wp-content/uploads/sites/4/assets//09_09_2004_bar_vertical_01233.jpg' },
         { name: 'Brooklyn College', imageURL: 'https://www2.cuny.edu/wp-content/uploads/sites/4/2015/01/09_20_2006_brc_quad_06.jpg' },
         { name: 'College of Staten Island', imageURL: 'https://www2.cuny.edu/wp-content/uploads/sites/4/2015/01/12_14_2012_csi_bldgs_33.jpg' },
         { name: 'Hunter College', imageURL: 'https://www2.cuny.edu/wp-content/uploads/sites/4/assets//09_10_2004_htc_huntercampus_33.jpg' },

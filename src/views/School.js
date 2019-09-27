@@ -4,7 +4,6 @@ import { connect } from 'react-redux'
 import { CARD_TYPE } from '../commons/constants'
 
 const School = ({ school, students }) => {
-    console.log({ school, students })
     return (
         <div id="app-students">
             { school && <h1>{ school.name } with { students.length } students</h1> }
