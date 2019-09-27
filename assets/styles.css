@@ -116,3 +116,10 @@ input, select, #app-create button {
     margin: 1em;
     padding: 2% 0;
 }
+
+.txt-error {
+    margin-top: 20px;
+    color: tomato;
+    font-size: 0.9em;
+    font-weight: bold;
+}

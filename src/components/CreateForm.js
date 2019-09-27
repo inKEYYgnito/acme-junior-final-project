@@ -45,7 +45,7 @@ class CreateForm extends Component {
                     }
                 </select>
                 <button onClick={ handleEnroll }>Enroll</button>
-                { error && (<p style={{color: 'tomato'}}>{ error }</p>)}
+                { error && (<p className='txt-error'>{ error }</p>)}
             </div>
         )
     }
