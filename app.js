@@ -10,4 +10,8 @@ app.use('/api/students', require('./api/students'))
 
 app.get('/', (req, res, next) => res.sendFile(path.join(__dirname, 'index.html')))
 
+app.use(({message}, req, res, next) => {
+    res.status(500).send({message})
+})
+
 module.exports = app

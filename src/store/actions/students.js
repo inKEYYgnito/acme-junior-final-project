@@ -24,8 +24,14 @@ const _create = (student) => {
 
 const create = (student) => {
     return async dispatch => {
-        const created = (await axios.post('/api/students', student)).data
-        return dispatch(_create(created))
+        try {
+            const created = (await axios.post('/api/students', student)).data
+            console.log('returning from create')
+            return dispatch(_create(created))
+        } catch (e) {
+            console.log('error from actoin-->', e.response.data.message)
+            throw e
+        }
     }
 }
 

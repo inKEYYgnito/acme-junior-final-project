@@ -14,12 +14,12 @@ class CreateForm extends Component {
     handleChange = (prop, value) => {
         this.setState({[prop]: value})
     }
-    handleEnroll = () => {
+    handleEnroll = async () => {
         const { firstName, lastName, email, gpa, schoolId } = this.state
         try {
-            this.props.enrollStudent({ firstName, lastName, email, gpa, schoolId })
+            await this.props.enrollStudent({ firstName, lastName, email, gpa, schoolId })
         } catch (e) {
-            this.setState({ error: e })
+            this.setState({ error: e.response.data.message })
         }
     }
     render() {
@@ -45,7 +45,7 @@ class CreateForm extends Component {
                     }
                 </select>
                 <button onClick={ handleEnroll }>Enroll</button>
-                { error && (<span>{ error }</span>)}
+                { error && (<p style={{color: 'tomato'}}>{ error }</p>)}
             </div>
         )
     }
